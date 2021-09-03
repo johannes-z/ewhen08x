@@ -48,7 +48,7 @@ Hooks.once("init", () => {
     // Register system settings
     registerSettings();
 
-    // Set initiative formulat in system data 
+    // Set initiative formulat in system data
         /*check if initiative mods are undefined
         if (game.data.system.data.initAttribute === undefined || game.data.system.data.initAttribute === "none") {game.data.system.data.initAttribute = "";}
         if (game.data.system.data.initCombatAbil === undefined || game.data.system.data.initCombatAbil === "none") {game.data.system.data.initCombatAbil = "";}
@@ -105,7 +105,7 @@ Hooks.once("init", () => {
         return game.settings.get('ewhen', arg);
     });
 
-    
+
     Handlebars.registerHelper("concat", function(...args){
         let result = "";
         for (let a of args) {
@@ -230,7 +230,7 @@ Hooks.on('updateItem', function(actor, item, changed){
 // should probably become preDeleteOwnedItem, to handle it before
 // the item actually vanishes from the inventory
 
-Hooks.on('deleteItem', function(actor, item){ 
+Hooks.on('deleteItem', function(actor, item){
 
 
     const ma = ["strength", "agility", "mind", "appeal"];
@@ -340,7 +340,7 @@ Hooks.on('renderChatMessage', (app, html) => {
 // Convert initiative to Everywhen Priority "ladder" if setting active
 Hooks.on('preUpdateCombatant', function(combatant, changed, diff) {
 
- 
+
     if(game.settings.get("ewhen", "priority")) { return; }
 
     if (!("initiative" in changed)) { return; }
@@ -358,9 +358,14 @@ Hooks.on('updateToken', function(token, changed, diff){
 
 });
 
+const DEFAULT_ITEM_ICON = 'icons/svg/item-bag.svg'
 Hooks.on('preCreateItem', function(item, data) {
     // console.warn("first argument: ", item, "second arg", data);
     console.warn("item type: ", item.type);
+
+    // Skip setting default icon when icon is already set
+    if (item.data.img !== DEFAULT_ITEM_ICON) return
+
      if (item.type == "weapon") {
          item.data.update({"img":"icons/svg/sword.svg"});
      } else if (item.type == "armor") {
@@ -374,11 +379,15 @@ Hooks.on('preCreateItem', function(item, data) {
      } else if (item.type == "power") {
         item.data.update({"img":"icons/svg/daze.svg"});
      }
- 
- });
- 
- Hooks.on('preCreateOwnedItem', function(item, data) {
+
+});
+
+Hooks.on('preCreateOwnedItem', function(item, data) {
     // console.warn("first argument: ", item, "second arg", data);
+
+    // Skip setting default icon when icon is already set
+    if (item.data.img !== DEFAULT_ITEM_ICON) return
+
     if (item.type == "weapon") {
         item.data.update({"img":"icons/svg/sword.svg"});
     } else if (item.type == "armor") {
@@ -392,6 +401,6 @@ Hooks.on('preCreateItem', function(item, data) {
     } else if (item.type == "power") {
        item.data.update({"img":"icons/svg/daze.svg"});
     }
- 
- });
+
+});
 
