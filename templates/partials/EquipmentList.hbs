@@ -1,42 +1,49 @@
+<h3 class="traitsheet-header">
+    <div>Gear and Possessions</div>
+    <a class="item-create"
+       title="Add Gear"
+       data-type="equipment">
+        <i class="fas fa-plus-square"></i>
+    </a>
+</h3>
+<table class="item-table">
+    <tr>
+        <th colspan=2
+            style="text-align:left;">{{localize "EW.game_term.gearitem"}}</th>
+        <th style="text-align:left">{{localize "EW.game_term.description"}}</th>
+        <th>{{localize "EW.game_term.quantity"}}</th>
+        <th>{{localize "EW.game_term.currencyval"}} ({{localize "EW.game_term.creditval"}})</th>
+        <th>{{localize "EW.game_term.totalweight"}}</th>
+        <th></th>
+    </tr>
+    {{#each equipment as |equipment id|}}
 
-                     <h3 class="traitsheet-header"><div>Gear and Possessions</div>
-                        <a class="item-create" title="Add Gear" data-type="equipment">
-                            <i class="fas fa-plus-square"></i>
-                        </a>
-                    </h3>
-                    <table class="item-table">
-                        <tr>
-                            <th colspan=2 style="text-align:left;">{{localize "EW.game_term.gearitem"}}</th>
-                            <th style="text-align:left">{{localize "EW.game_term.description"}}</th>
-                            <th>{{localize "EW.game_term.quantity"}}</th>
-                            <th>{{localize "EW.game_term.currencyval"}} ({{localize "EW.game_term.creditval"}})</th>
-                            <th>{{localize "EW.game_term.totalweight"}}</th>
-                            <th></th>
-                        </tr>
-                        {{#each equipment as |equipment id|}} 
-           
-                        <tr>
-                            <td><img src="{{equipment.img}}" height="24" width="24"/></td>
-                            <td class="item-name item" data-item-id="{{equipment.id}}">
-                               <a class="item-edit"><strong>{{equipment.name}}</strong></a>
-                            </td>
-                            <td>
-                                {{equipment.data.data.description}}
-                            </td>
-                            <td style="text-align:center;">
-                                {{equipment.data.data.quantity}}
-                            </td>
-                            <td style="text-align:center;">
-                                {{equipment.data.data.currency_cost}} ({{equipment.data.data.credit_cost}})
-                            </td>
-                            <td style="text-align:center;">
-                                {{equipment.data.data.weight}}
-                            </td>
-                             <td>
-                                <a class="item-delete item" data-item-id="{{equipment.id}}">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                        {{/each}}
-                    </table>
+    <tr>
+        <td><img src="{{equipment.img}}"
+                 height="24"
+                 width="24" /></td>
+        <td class="item-name item"
+            data-item-id="{{equipment.id}}">
+            <a class="item-edit"><strong>{{equipment.name}}</strong></a>
+        </td>
+        <td>
+            {{equipment.data.data.description}}
+        </td>
+        <td style="text-align:center;">
+            {{equipment.data.data.quantity}}
+        </td>
+        <td style="text-align:center;">
+            {{equipment.data.data.currency_cost}} ({{equipment.data.data.credit_cost}})
+        </td>
+        <td style="text-align:center;">
+            {{equipment.data.data.weight}}
+        </td>
+        <td>
+            <a class="item-delete item"
+               data-item-id="{{equipment.id}}">
+                <i class="fas fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+    {{/each}}
+</table>

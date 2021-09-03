@@ -1,37 +1,37 @@
-<form class="{{cssClass}}" autocomplete="off">
+<form class="{{cssClass}}"
+      autocomplete="off">
     <header class="ewhen sheethead">
-       <header class="ewhen sheethead">
         <div class="ewhen header-flexitem">
-        <img class="profile-img" style="background:rgb(138,138,138); min-width:64px !important; min-height:64px !imporant" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64"/>
+            <img class="profile-img"
+                 style="background:rgb(138,138,138); min-width:64px !important; min-height:64px !imporant"
+                 src="{{actor.img}}"
+                 data-edit="img"
+                 title="{{actor.name}}"
+                 height="64"
+                 width="64" />
         </div>
         <div class="ewhen header-flexitem name-block">
             <div class="charname">
-                <input class="ewhen charname" style="width:100%; vertical-align:top; background:lightgray;" name="name" type="text" value="{{actor.name}}" placeholder="Name"/>
-                
+                <input class="ewhen charname"
+                       style="width:100%; vertical-align:top; background:lightgray;"
+                       name="name"
+                       type="text"
+                       value="{{actor.name}}"
+                       placeholder="Name" />
             </div>
-            
-            
         </div>
-    
-        
-    </header>
     </header>
     <section class="sheetbody">
         <div class="ewhen flexcol">
             <div class="ewhen flexrow">
                 {{> 'systems/ewhen/templates/partials/MainAttributes.hbs'}}
                 <div class="ewhen flex-item">
-                {{> 'systems/ewhen/templates/partials/VehicleSpecs.hbs'}}
-                {{> 'systems/ewhen/templates/partials/WeaponList.hbs'}}
-                {{> 'systems/ewhen/templates/partials/BoonList.hbs'}}
-                {{> 'systems/ewhen/templates/partials/FlawList.hbs'}}
+                    {{> 'systems/ewhen/templates/partials/VehicleSpecs.hbs'}}
+                    {{> 'systems/ewhen/templates/partials/WeaponList.hbs'}}
+                    {{> 'systems/ewhen/templates/partials/BoonList.hbs'}}
+                    {{> 'systems/ewhen/templates/partials/FlawList.hbs'}}
                 </div>
-
             </div>
-           
         </div>
-
-
     </section>
 </form>
-

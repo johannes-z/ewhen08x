@@ -14,7 +14,7 @@
                 <td id="wimg" style="width:40px;" data-wpn-img="{{wimg}}"><img src="{{wimg}}" height="32" width="32"></td>
                 <td id="wname" style="text-align:left"><span style="font-size:1.5em" data-wpn-name="{{wname}}">{{wname}}</span> {{#if (ne range 0)}}<br><span style="font-size:1.1em">(Range {{range}})</span>{{/if}}</td>
                 <td id="dmg" style="text-align:center; font-size:1.5em;">{{localize baseExpr}}
-                    
+
                     {{#if (ne attName "none")}} + {{#if half}} &#189;{{/if}} {{attName}}{{/if}}
                 </td>
             </tr>
@@ -58,7 +58,7 @@
                     </select>
                  </td>
              </tr-->
-         </table>         
+         </table>
      </div>
  </div>
 
