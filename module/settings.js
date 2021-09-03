@@ -1,4 +1,4 @@
-export const registerSettings = function() {
+export const registerSettings = function () {
 
     // Register initiative model
 
@@ -57,35 +57,35 @@ export const registerSettings = function() {
     });
 
     game.settings.register("ewhen", "initAttribute", {
-        name:"EW.SETTINGS.InitAttribute",
-        hint:"EW.SETTINGS.InitAttributeDesc",
-        config:true,
-        type:String,
-        default:"0",
+        name: "EW.SETTINGS.InitAttribute",
+        hint: "EW.SETTINGS.InitAttributeDesc",
+        config: true,
+        type: String,
+        default: "0",
         choices: {
-            '0':'None',
-            '@main_attributes.strength.rank':'EW.attribute.main.strength',
-            '@main_attributes.agility.rank':'EW.attribute.main.agility',
-            '@main_attributes.mind.rank':'EW.attribute.main.mind',
-            '@main_attributes.appeal.rank':'EW.attribute.main.appeal'
+            '0': 'None',
+            '@main_attributes.strength.rank': 'EW.attribute.main.strength',
+            '@main_attributes.agility.rank': 'EW.attribute.main.agility',
+            '@main_attributes.mind.rank': 'EW.attribute.main.mind',
+            '@main_attributes.appeal.rank': 'EW.attribute.main.appeal'
         },
         onChange: () => {
             game.data.system.data.initiative = `@priority_roll.expression + ${game.settings.get('ewhen', 'initAttribute')} + ${game.settings.get('ewhen', 'initCombat')}`
         }
     });
-    
+
     game.settings.register("ewhen", "initCombat", {
-        name:"EW.SETTINGS.InitCombat",
-        hint:"EW.SETTINGS.InitCombatDesc",
-        config:true,
-        type:String,
-        default:"0",
+        name: "EW.SETTINGS.InitCombat",
+        hint: "EW.SETTINGS.InitCombatDesc",
+        config: true,
+        type: String,
+        default: "0",
         choices: {
-            '0':'None',
-            '@combat_attributes.melee.rank':'EW.attribute.combat.melee',
-            '@combat_attributes.ranged.rank':'EW.attribute.combat.ranged',
-            '@combat_attributes.defense.rank':'EW.attribute.combat.defense',
-            '@combat_attributes.initiative.rank':'EW.attribute.combat.initiative'
+            '0': 'None',
+            '@combat_attributes.melee.rank': 'EW.attribute.combat.melee',
+            '@combat_attributes.ranged.rank': 'EW.attribute.combat.ranged',
+            '@combat_attributes.defense.rank': 'EW.attribute.combat.defense',
+            '@combat_attributes.initiative.rank': 'EW.attribute.combat.initiative'
         },
         onChange: () => {
             game.data.system.data.initiative = `@priority_roll.expression + ${game.settings.get('ewhen', 'initAttribute')} + ${game.settings.get('ewhen', 'initCombat')}`
@@ -95,66 +95,66 @@ export const registerSettings = function() {
     game.settings.register("ewhen", "priority", {
         name: "EW.SETTINGS.PriorityToggle",
         hint: "",
-        config:true,
-        type:Boolean,
-        default:true
+        config: true,
+        type: Boolean,
+        default: true
     });
 
     game.settings.register("ewhen", "rerollPerRound", {
-        name:"EW.SETTINGS.RerollPer",
-        hint:"",
-        config:true,
-        type:Boolean,
-        default:true
+        name: "EW.SETTINGS.RerollPer",
+        hint: "",
+        config: true,
+        type: Boolean,
+        default: true
     });
 
 
-    
+
     // Settings for various optional rules
 
     game.settings.register("ewhen", "useResolve", {
         name: "EW.SETTINGS.UseResolve",
         hint: "EW.SETTINGS.UseResolveDesc",
-        scope:"world",
-        config:true,
-        type:Boolean,
-        default:true
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true
     });
 
     game.settings.register("ewhen", "useCritical", {
         name: "EW.SETTINGS.UseCritical",
         hint: "EW.SETTINGS.UseCritical",
-        scope:"world",
-        config:true,
-        type:Boolean,
-        default:true
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true
     });
 
     game.settings.register("ewhen", "useArcana", {
         name: "EW.SETTINGS.UseArcana",
         hint: "EW.SETTINGS.UseArcanaDesc",
-        scope:"world",
-        config:true,
-        type:Boolean,
-        default:true
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true
     });
 
     game.settings.register("ewhen", "useFaith", {
         name: "EW.SETTINGS.UseFaith",
         hint: "EW.SETTINGS.UseFaithDesc",
-        scope:"world",
-        config:true,
-        type:Boolean,
-        default:true
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true
     });
 
     game.settings.register("ewhen", "usePsionics", {
         name: "EW.SETTINGS.UsePsionics",
         hint: "EW.SETTINGS.UsePsionicsDesc",
-        scope:"world",
-        config:true,
-        type:Boolean,
-        default:true
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true
     });
 
     game.settings.register("ewhen", "useScale", {
@@ -181,7 +181,7 @@ export const registerSettings = function() {
         scope: "world",
         config: true,
         type: Number,
-        default:1
+        default: 1
     });
 
     game.settings.register("ewhen", "strName", {

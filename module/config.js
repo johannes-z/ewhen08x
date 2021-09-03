@@ -1,7 +1,5 @@
 export const EW = {
-
     main_attributes: {
-
         strength: 'EW.attributes.primary.strength',
         agility: 'EW.attributes.primary.agility',
         mind: 'EW.attributes.primary.mind',
@@ -52,26 +50,26 @@ export const EW = {
         credit_rating: 'EW.attributes.resource.credit_rating'
     },
     damageTypes: {
-        fatigue:'EW.damage.type.fatigue',
-        normal:'EW.damage.type.normal',
-        lasting:'EW.damage.type.lasting'
+        fatigue: 'EW.damage.type.fatigue',
+        normal: 'EW.damage.type.normal',
+        lasting: 'EW.damage.type.lasting'
     },
     powerTypes: {
-        arcane:'EW.power.arcane',
-        psionic:'EW.power.psionic',
-        faith:'EW.power.faith',
-        superhero:'EW.power.superhero',
-        martialarts:'EW.power.martialarts'
+        arcane: 'EW.power.arcane',
+        psionic: 'EW.power.psionic',
+        faith: 'EW.power.faith',
+        superhero: 'EW.power.superhero',
+        martialarts: 'EW.power.martialarts'
     },
     traitSources: {
-        normal:'EW.trait.source.normal',
-        origin:'EW.trait.source.origin',
-        augment:'EW.trait.source.augment',
-        supernatural:'EW.trait.source.supernatural',
-        vehicle:'EW.trait.source.vehicle',
-        setting:'EW.trait.source.setting',
-        creature:'EW.trait.source.creature',
-        martial_arts:'EW.trait.source.martial_arts',
+        normal: 'EW.trait.source.normal',
+        origin: 'EW.trait.source.origin',
+        augment: 'EW.trait.source.augment',
+        supernatural: 'EW.trait.source.supernatural',
+        vehicle: 'EW.trait.source.vehicle',
+        setting: 'EW.trait.source.setting',
+        creature: 'EW.trait.source.creature',
+        martial_arts: 'EW.trait.source.martial_arts',
         custom: 'EW.trait.source.custom',
     },
     traitTypes: {
@@ -89,9 +87,9 @@ export const EW = {
     },
     intelligent_entityTypes: {
         critter: 'EW.entity.type.critter',
-        minor:'EW.entity.type.minor',
-        lesser:'EW.entity.type.lesser',
-        greater:'EW.entity.type.greater'
+        minor: 'EW.entity.type.minor',
+        lesser: 'EW.entity.type.lesser',
+        greater: 'EW.entity.type.greater'
     },
     weapon_types: {
         lightMelee: 'EW.weapontype.lightmelee',
@@ -151,5 +149,4 @@ export const EW = {
         RESOURCE_UPDATE: "systems/ewhen/templates/actor/EWAdjustResource.hbs",
         VEHICLE_RESOURCE_UPDATE: "systems/ewhen/templates/actor/EWAdjustVehicleResource.hbs"
     }
-
 }

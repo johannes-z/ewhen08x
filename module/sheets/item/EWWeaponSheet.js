@@ -4,12 +4,12 @@ export default class EWWeaponSheet extends ItemSheet {
         return "systems/ewhen/templates/item/EWWeaponSheet.hbs"
     }
 
-    getData () {
+    getData() {
         const data = this.data;
         console.warn("New Item Data: ", data);
 
-        data.config = CONFIG.ewhen; 
-        
+        data.config = CONFIG.ewhen;
+
         return data;
     }
 }

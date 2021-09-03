@@ -1,4 +1,4 @@
-export function getDiceModel (game) {
+export function getDiceModel(game) {
   const diceType = game.settings.get("ewhen", "diceType")
   return DICE_MODELS[diceType] || DEFAULT_DICE_MODEL
 }

@@ -6,15 +6,15 @@ export class EWMessageHelper {
 
         console.warn("Requested Message Template: ", template);
         console.warn("Data: ", data);
-        renderTemplate(template, data).then((msg)=>{
+        renderTemplate(template, data).then((msg) => {
             ChatMessage.create({
                 user: game.user._id,
                 roll: data.roll,
-                type:CONST.CHAT_MESSAGE_TYPES.ROLL,
+                type: CONST.CHAT_MESSAGE_TYPES.ROLL,
                 speaker: ChatMessage.getSpeaker(),
                 content: msg
             });
-            
+
         });
     }
 

@@ -12,12 +12,12 @@ export default class EWActorSheet extends ActorSheet {
      */
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-        classes: ['ewhen', 'sheet', 'actor', 'actor-sheet'],
-        width: 775,
-        height: 685,
-        left:120,
-        tabs: [{navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main"}],
-        dragDrop: [{dragSelector: ".dragline", dropSelector: null}]
+            classes: ['ewhen', 'sheet', 'actor', 'actor-sheet'],
+            width: 775,
+            height: 685,
+            left: 120,
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheetbody", initial: "main" }],
+            dragDrop: [{ dragSelector: ".dragline", dropSelector: null }]
         });
     }
 
@@ -27,32 +27,32 @@ export default class EWActorSheet extends ActorSheet {
     getData() {
         const data = deepClone(this.actor.data);
 
-       // console.warn("080 super getdata, data.items: ", data);
-        
-        data.config = CONFIG.ewhen; 
+        // console.warn("080 super getdata, data.items: ", data);
+
+        data.config = CONFIG.ewhen;
         let ownedItems = this.actor.items;
-        data.actor = this.actor; 
+        data.actor = this.actor;
 
         // console.warn("Owned Items: ", ownedItems);
-        
-        data.weapons = ownedItems.filter(function(item) {return item.type == "weapon"});
+
+        data.weapons = ownedItems.filter(function (item) { return item.type == "weapon" });
         //console.warn("data.weapons: ", data.weapons);
-        data.traits = ownedItems.filter(function(item) {return item.type == "trait"});
+        data.traits = ownedItems.filter(function (item) { return item.type == "trait" });
         //console.warn("data.traits: ", data.traits);
 
         if (this.actor.data.type == "character") {
-        data.careers = ownedItems.filter(function(item) {return item.type == "career"});
-        data.armors = ownedItems.filter(function(item) {return item.type == "armor"});
-        data.powers = ownedItems.filter(function(item) {return item.type == "power"});
-        data.equipment = ownedItems.filter(function(item) {return item.type == "equipment"});
-        data.main_attributes = this.actor.data.data.main_attributes;
-        data.combat_attributes = this.actor.data.data.combat_attributes;
-        data.fdmg = this.actor.data.data.resources.lifeblood.fatigue;
-        data.rdmg = this.actor.data.data.resources.lifeblood.regular;
-        data.ldmg = this.actor.data.data.resources.lifeblood.lasting;
-        data.crit = this.actor.data.data.resources.lifeblood.critical;
-        data.cdmg = this.actor.data.data.resources.lifeblood.value;
-        data.EWActorType = "character";
+            data.careers = ownedItems.filter(function (item) { return item.type == "career" });
+            data.armors = ownedItems.filter(function (item) { return item.type == "armor" });
+            data.powers = ownedItems.filter(function (item) { return item.type == "power" });
+            data.equipment = ownedItems.filter(function (item) { return item.type == "equipment" });
+            data.main_attributes = this.actor.data.data.main_attributes;
+            data.combat_attributes = this.actor.data.data.combat_attributes;
+            data.fdmg = this.actor.data.data.resources.lifeblood.fatigue;
+            data.rdmg = this.actor.data.data.resources.lifeblood.regular;
+            data.ldmg = this.actor.data.data.resources.lifeblood.lasting;
+            data.crit = this.actor.data.data.resources.lifeblood.critical;
+            data.cdmg = this.actor.data.data.resources.lifeblood.value;
+            data.EWActorType = "character";
         } else {
             data.EWActorType = "vehicle";
         }
@@ -82,7 +82,7 @@ export default class EWActorSheet extends ActorSheet {
 
         html.find('.att-roll').click(this._onAttributeRoll.bind(this));
 
-       // html.find('.com-roll').click(this._onCombatRoll.bind(this));
+        // html.find('.com-roll').click(this._onCombatRoll.bind(this));
 
         html.find('.basic-roll').click(this._onBasicRoll.bind(this));
 
@@ -116,67 +116,67 @@ export default class EWActorSheet extends ActorSheet {
         event.preventDefault();
 
 
-       let element = event.currentTarget;
-       let minorType = element.dataset.minorType;
-       let actorData = duplicate(this.actor.data.data);
-       let rabbleAttack = {
+        let element = event.currentTarget;
+        let minorType = element.dataset.minorType;
+        let actorData = duplicate(this.actor.data.data);
+        let rabbleAttack = {
 
-        name: "Rabble Attack",
-        type: "weapon",
-        data: {
-            wpn_type:"hordeAttack",
+            name: "Rabble Attack",
+            type: "weapon",
+            data: {
+                wpn_type: "hordeAttack",
                 damage: {
-                    dice:"1d3",
-                    scale:1,
-                    add_attribute:"none",
-                    half_attribute:false,
-                    mod:0,
-                    ap:0
+                    dice: "1d3",
+                    scale: 1,
+                    add_attribute: "none",
+                    half_attribute: false,
+                    mod: 0,
+                    ap: 0
                 },
-                hands:"one handed",
-                range:0,
-                recoil:0,
-                era:""
+                hands: "one handed",
+                range: 0,
+                recoil: 0,
+                era: ""
             }
         }
-       let hordeAttack = {
-        name: "Horde Attack",
-        type: "weapon",
-        data: {
-            wpn_type:"hordeAttack",
+        let hordeAttack = {
+            name: "Horde Attack",
+            type: "weapon",
+            data: {
+                wpn_type: "hordeAttack",
                 damage: {
-                    dice:"2d6kl1",
-                    scale:1,
-                    add_attribute:"none",
-                    half_attribute:false,
-                    mod:0,
-                    ap:0
+                    dice: "2d6kl1",
+                    scale: 1,
+                    add_attribute: "none",
+                    half_attribute: false,
+                    mod: 0,
+                    ap: 0
                 },
-                hands:"one handed",
-                range:0,
-                recoil:0,
-                era:""
+                hands: "one handed",
+                range: 0,
+                recoil: 0,
+                era: ""
             }
         }
 
 
         let downgrade = element.checked;
 
-       // ui.notifications.warn(game.i18n.localize("EW.warnings.onewaytrip"));
+        // ui.notifications.warn(game.i18n.localize("EW.warnings.onewaytrip"));
 
-        if(downgrade){
-            switch(minorType) {
+        if (downgrade) {
+            switch (minorType) {
                 case "tough": {
                     console.log("resources", actorData.resources);
                     actorData.resources.lifeblood.max = 5 + actorData.main_attributes.strength.rank;
                     actorData.resources.lifeblood.value = actorData.resources.lifeblood.max;
                     actorData.resources.resolve.max = 5 + actorData.main_attributes.mind.rank;
                     actorData.resources.resolve.value = actorData.resources.resolve.max;
-                    return this.actor.update({ "data": actorData});
+                    return this.actor.update({ "data": actorData });
                 }
                 case "rabble": {
                     let actorData = duplicate(this.actor.data.data);
-                   // console.log("resources");
+                    // console.log("resources");
                     actorData.resources.lifeblood.max = Math.floor(Math.random() * 4);
                     actorData.resources.lifeblood.value = actorData.resources.lifeblood.max;
                     actorData.resources.resolve.max = 1;
@@ -184,24 +184,24 @@ export default class EWActorSheet extends ActorSheet {
                     // Item.create(rabbleAttack, { parent: this.actor});
                     // Item.create(hordeAttack, { parent: this.actor});
 
-                    return this.actor.update({ "data": actorData});
+                    return this.actor.update({ "data": actorData });
                 }
                 default: {
                     actorData.resources.lifeblood.max = 10 + actorData.main_attributes.strength.rank;
                     actorData.resources.lifeblood.value = actorData.resources.lifeblood.max;
                     actorData.resources.resolve.max = 10 + actorData.main_attributes.mind.rank;
                     actorData.resources.resolve.value = actorData.resources.resolve.max;
-                    return this.actor.update({ "data": actorData});
+                    return this.actor.update({ "data": actorData });
                 };
             }
         } else {
             let actorData = duplicate(this.actor.data.data);
             // console.log("resources");
-             actorData.resources.lifeblood.max = 10 + actorData.main_attributes.strength.rank;
-             actorData.resources.lifeblood.value = actorData.resources.lifeblood.max;
-             actorData.resources.resolve.max = 10 + actorData.main_attributes.mind.rank;
-             actorData.resources.resolve.value = actorData.resources.resolve.max;
-             return this.actor.update({ "data": actorData});
+            actorData.resources.lifeblood.max = 10 + actorData.main_attributes.strength.rank;
+            actorData.resources.lifeblood.value = actorData.resources.lifeblood.max;
+            actorData.resources.resolve.max = 10 + actorData.main_attributes.mind.rank;
+            actorData.resources.resolve.value = actorData.resources.resolve.max;
+            return this.actor.update({ "data": actorData });
         }
     }
 
@@ -212,7 +212,7 @@ export default class EWActorSheet extends ActorSheet {
         let element = event.currentTarget;
 
         let res = element.dataset.resourceName;
-        
+
 
         if (res == "frame") {
             resData = duplicate(this.actor.data.data.frame);
@@ -223,7 +223,7 @@ export default class EWActorSheet extends ActorSheet {
 
         let dialogData = {
             actor: this.actor,
-            resname: "EW.activity.adjust"+res,
+            resname: "EW.activity.adjust" + res,
             resinfo: resData,
             res: res
         }
@@ -243,7 +243,7 @@ export default class EWActorSheet extends ActorSheet {
             actor: this.actor,
             resinfo: duplicate(this.actor.data.data.frame),
             resname: "EW.activity.adjustframe",
-            res:"frame"
+            res: "frame"
         }
 
         return EWDialogHelper.generateVehicleUpdateDialog(CONFIG.ewhen.DIALOG_TYPE.VEHICLE_RESOURCE_UPDATE, dialogData);
@@ -300,15 +300,15 @@ export default class EWActorSheet extends ActorSheet {
         let ma = ["strength", "agility", "mind", "appeal"];
         let ca = ["melee", "ranged", "defense", "initiative"];
 
-        if(ca.includes(attribute)) {
+        if (ca.includes(attribute)) {
             rank = this.actor.data.data.combat_attributes[attribute].rank;
             isCombat = true;
         } else {
             rank = this.actor.data.data.main_attributes[attribute].rank;
         }
 
-        // todo - set up attribute-ability links as a setting? or just remove defaults? 
-        if(isCombat) {
+        // todo - set up attribute-ability links as a setting? or just remove defaults?
+        if (isCombat) {
             switch (attribute) {
                 // select the likely attribute if it's a combat roll
                 // case "initiative": attribute2 = "mind"; break;
@@ -328,10 +328,10 @@ export default class EWActorSheet extends ActorSheet {
     _onWeaponRoll(event) {
         event.preventDefault();
 
-       /*
-        let att2 = "agility";
-        var att1;
-       */
+        /*
+         let att2 = "agility";
+         var att1;
+        */
 
         let element = event.currentTarget;
 
@@ -375,7 +375,7 @@ export default class EWActorSheet extends ActorSheet {
 
         let field = element.dataset.field;
 
-        return item.update({ [field]: element.innerText});
+        return item.update({ [field]: element.innerText });
 
     }
 
@@ -389,8 +389,8 @@ export default class EWActorSheet extends ActorSheet {
 
         let field = element.dataset.field;
 
-       // console.log("Career rank: ", field, element.value);
-        return item.update({ [field]: element.value});
+        // console.log("Career rank: ", field, element.value);
+        return item.update({ [field]: element.value });
 
     }
 
@@ -401,69 +401,69 @@ export default class EWActorSheet extends ActorSheet {
         var locString = "EW.sheet.new";
 
         let element = event.currentTarget;
-        if(element.dataset.type == "trait"){
+        if (element.dataset.type == "trait") {
             subtype = element.dataset.subType;
             locString += subtype;
         } else {
             locString += element.dataset.type;
         }
 
-        let itemData  = {
+        let itemData = {
             name: game.i18n.localize(locString),
             type: element.dataset.type,
             data: {
-                    type: subtype
+                type: subtype
             }
         }
 
-        return Item.create(itemData, {parent: this.actor, renderSheet:true});
+        return Item.create(itemData, { parent: this.actor, renderSheet: true });
 
-      }
+    }
 
-      _deleteItem(event) {
-          event.preventDefault();
-          let element = event.currentTarget;
-          let itemId = element.closest(".item").dataset.itemId;
+    _deleteItem(event) {
+        event.preventDefault();
+        let element = event.currentTarget;
+        let itemId = element.closest(".item").dataset.itemId;
 
-          let d = new Dialog({
+        let d = new Dialog({
             title: "Delete This Item?",
             content: "<p>Are you sure you want to delete this item?</p>",
             buttons: {
-             one: {
-              icon: '<i class="fas fa-check"></i>',
-              label: "Yes",
-              callback: () => { this.actor.deleteOwnedItem(itemId) }
-             },
-             two: {
-              icon: '<i class="fas fa-times"></i>',
-              label: "Cancel",
-              callback: () => { return; }
-             }
+                one: {
+                    icon: '<i class="fas fa-check"></i>',
+                    label: "Yes",
+                    callback: () => { this.actor.deleteOwnedItem(itemId) }
+                },
+                two: {
+                    icon: '<i class="fas fa-times"></i>',
+                    label: "Cancel",
+                    callback: () => { return; }
+                }
             },
             default: "two",
             render: html => console.log("Register interactivity in the rendered dialog"),
             close: html => console.log("This always is logged no matter which option is chosen")
-           });
-           d.render(true);
+        });
+        d.render(true);
 
-      }
+    }
 
-      _onEquipItem(event) {
-          event.preventDefault();
+    _onEquipItem(event) {
+        event.preventDefault();
 
-          let element = event.currentTarget;
+        let element = event.currentTarget;
 
-          let itemId = element.closest(".item").dataset.itemId;
+        let itemId = element.closest(".item").dataset.itemId;
 
-          let item = this.actor.items.get(itemId);
-          
-          let field = element.dataset.field;
+        let item = this.actor.items.get(itemId);
 
-          let val = element.checked;
+        let field = element.dataset.field;
 
-          return item.update({ [field]: val});
+        let val = element.checked;
 
-      }
+        return item.update({ [field]: val });
+
+    }
 
 
 

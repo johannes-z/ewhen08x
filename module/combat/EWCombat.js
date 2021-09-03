@@ -12,26 +12,26 @@ export class EWCombat extends Combat {
 
     startCombat() {
         let updateDiffs = new Array();
-        if(game.settings.get("ewhen", "priority")) {
+        if (game.settings.get("ewhen", "priority")) {
             this.combatants.forEach(combatant => {
                 let adjInit = this.convertInitiative(combatant);
-                let diff = {_id:combatant.data._id, "data.initiative":adjInit, "initiative":adjInit};
+                let diff = { _id: combatant.data._id, "data.initiative": adjInit, "initiative": adjInit };
                 updateDiffs.push(diff);
                 // combatant.update({"initiative":adjInit, "data.initiative":adjInit});
             });
             // console.warn("Priority List Array: ", priorityList);
-            this.updateEmbeddedDocuments("Combatant",  updateDiffs);
+            this.updateEmbeddedDocuments("Combatant", updateDiffs);
             super.startCombat();
         } else {
             super.startCombat();
         }
     }
-     /**
-     * @override
-     */
-    nextRound(){
+    /**
+    * @override
+    */
+    nextRound() {
         super.nextRound();
-        if(!game.settings.get("ewhen", "rerollPerRound")) { return; }
+        if (!game.settings.get("ewhen", "rerollPerRound")) { return; }
         let rrlist = new Array();
         let updateDiffs = new Array();
         const diceModel = getDiceModel(game);
@@ -40,15 +40,15 @@ export class EWCombat extends Combat {
         console.warn("DiceModel: ", diceModel);
 
 
-        if(game.settings.get("ewhen", "priority")) {
+        if (game.settings.get("ewhen", "priority")) {
             this.combatants.forEach(combatant => {
                 let adjInit = this.convertInitiative(combatant);
-                let diff = {_id:combatant.data._id, "data.initiative":adjInit, "initiative":adjInit};
+                let diff = { _id: combatant.data._id, "data.initiative": adjInit, "initiative": adjInit };
                 updateDiffs.push(diff);
                 // combatant.update({"initiative":adjInit, "data.initiative":adjInit});
             });
             // console.warn("Priority List Array: ", priorityList);
-            this.updateEmbeddedDocuments("Combatant",  updateDiffs);
+            this.updateEmbeddedDocuments("Combatant", updateDiffs);
         } else {
             let cibd = 0;
             let cipd = 0;
@@ -62,7 +62,7 @@ export class EWCombat extends Combat {
             let tInitDiceMods = cibd + cipd + cimd;
             let initFormula = diceModel.numberOfDice + diceModel.baseDie + "kh" + diceModel.numberOfDice;
             console.warn(initFormula);
-            this.rollInitiative(rrlist, {formula:initFormula});
+            this.rollInitiative(rrlist, { formula: initFormula });
         }
     }
 
@@ -72,46 +72,46 @@ export class EWCombat extends Combat {
      */
     convertInitiative(com, init) {
 
-        if(game.settings.get("ewhen", "priority") === false) { return; }
+        if (game.settings.get("ewhen", "priority") === false) { return; }
 
         const diceModel = getDiceModel(game)
         console.warn("DiceModel: ", diceModel);
         var adjInit = 0;
         var isPC;
-       // console.log("Combatant in convertInit: ", com);
-   
+        // console.log("Combatant in convertInit: ", com);
+
         let actorId = com.data.actorId;
         let actor = game.actors.get(actorId);
-   
+
 
         let actorInitMods = actor.data.data.priority_roll.bd + actor.data.data.priority_roll.pd + actor.data.data.priority_roll.miscMod;
         let initExpr = (actorInitMods + diceModel.numberOfDice) + diceModel.baseDie + "kh" + diceModel.numberOfDice;
         console.warn("Init Expression: ", initExpr);
-        let initiative = new Roll(initExpr).evaluate({async:false});
+        let initiative = new Roll(initExpr).evaluate({ async: false });
         let initRoll = initiative.total;
         let name = actor.name;
         let isRival = actor.data.data.isRival;
         let isTough = actor.data.data.isTough;
         let isRabble = actor.data.data.isRabble;
 
-        if(!isRival && !isTough && !isRabble) { isPC = true; } else { isPC = false; }
+        if (!isRival && !isTough && !isRabble) { isPC = true; } else { isPC = false; }
 
         let mnd = actor.getAttribute("mind").rank;
         let ini = actor.getAttribute("initiative").rank;
         let diceOnly = initRoll - mnd - ini;
 
-        if(!isPC){
-        // todo - work on Rivals with "Diabolical Plan" feat;
+        if (!isPC) {
+            // todo - work on Rivals with "Diabolical Plan" feat;
             if (isRival) { adjInit = 5; }
             if (isTough) { adjInit = 4; }
             if (isRabble) { adjInit = 2; }
 
         }
 
-      //  console.log(name, " isPC: ", isPC);;
+        //  console.log(name, " isPC: ", isPC);;
 
         if (isPC) {
-            if(diceOnly >= diceModel.success) {
+            if (diceOnly >= diceModel.success) {
                 // mighty success; initiative = 8
                 adjInit = 8;
             } else if (initRoll >= diceModel.tn && diceOnly < diceModel.success && diceOnly > diceModel.failure) {
@@ -125,8 +125,8 @@ export class EWCombat extends Combat {
                 adjInit = 1;
             }
         }
-    
-      return adjInit;
+
+        return adjInit;
 
     }
 

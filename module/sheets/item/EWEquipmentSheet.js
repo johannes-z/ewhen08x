@@ -4,12 +4,12 @@ export default class EWEquipmentSheet extends ItemSheet {
         return "systems/ewhen/templates/item/EWEquipmentSheet.hbs"
     }
 
-    getData () {
+    getData() {
         const data = super.getData();
 
-        data.config = CONFIG.ewhen; 
-        console.warn("Equipment Creation Data: ", data); 
+        data.config = CONFIG.ewhen;
+        console.warn("Equipment Creation Data: ", data);
         return data;
-        
+
     }
 }

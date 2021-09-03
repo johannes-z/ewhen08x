@@ -12,9 +12,9 @@ import { getDiceModel } from '../diceModels.js'
 export class EWRoll {
 
     rollInfo = {};
-    actor={};
-    roll={};
-    rollObj={};
+    actor = {};
+    roll = {};
+    rollObj = {};
     html;
     isDamage;
     item;
@@ -27,7 +27,7 @@ export class EWRoll {
     *               a damage roll, and what weapon is being
     *               rolled.
     */
-    constructor(data){
+    constructor(data) {
 
         console.log("Data: ", data);
         this.html = data.html;
@@ -36,14 +36,14 @@ export class EWRoll {
         this.item = data.item;
 
 
-        if(this.isDamage){
+        if (this.isDamage) {
             this.compileDamageRollInfo();
         } else if (this.item.type == "armor") {
             this.compileArmorRollInfo();
         } else {
             this.compileRollInfo();
         }
-       //  console.log("This.actor: ", this.actor, "This.html: ", this.html);
+        //  console.log("This.actor: ", this.actor, "This.html: ", this.html);
     }
 
     /**
@@ -88,7 +88,7 @@ export class EWRoll {
         * If a career is involved, get its rank
         */
 
-       if (careerName != "none") {
+        if (careerName != "none") {
             let career = this.actor.data.items
                 .filter(item => item.type == "career")
                 .find(item => item.name == careerName);
@@ -97,56 +97,56 @@ export class EWRoll {
                 let itemId = career._id;
                 cVal = this.actor.getOwnedItem(itemId).data.data.data.rank;
             }
-       }
+        }
 
-       /*
-       * Get the base difficulty modifier
-       */
-       switch (difflevel) {
-           case "very_easy": baseDiff = 2; break;
-           case "easy": baseDiff = 1; break;
-           case "moderate": baseDiff = 0; break;
-           case "hard": baseDiff = -1; break;
-           case "tough": baseDiff = -2; break;
-           case "demanding": baseDiff = -4; break;
-           case "formidable": baseDiff = -6; break;
-           case "heroic": baseDiff = -8; break;
-       };
+        /*
+        * Get the base difficulty modifier
+        */
+        switch (difflevel) {
+            case "very_easy": baseDiff = 2; break;
+            case "easy": baseDiff = 1; break;
+            case "moderate": baseDiff = 0; break;
+            case "hard": baseDiff = -1; break;
+            case "tough": baseDiff = -2; break;
+            case "demanding": baseDiff = -4; break;
+            case "formidable": baseDiff = -6; break;
+            case "heroic": baseDiff = -8; break;
+        };
 
-       let diffStr = "EW.difficulty."+difflevel;
-       console.warn("diffStr", diffStr);
+        let diffStr = "EW.difficulty." + difflevel;
+        console.warn("diffStr", diffStr);
 
-       /*
-       * Get the other difficulty modifier; needs streamlining
-       */
+        /*
+        * Get the other difficulty modifier; needs streamlining
+        */
 
-       let totalMods = baseDiff + Number(othermods);
-       attrVal = attr == "none" ? 0 : this.actor.data.data.main_attributes[attr].rank;
-       comVal = combat == "none" ? 0 : this.actor.data.data.combat_attributes[combat].rank;
+        let totalMods = baseDiff + Number(othermods);
+        attrVal = attr == "none" ? 0 : this.actor.data.data.main_attributes[attr].rank;
+        comVal = combat == "none" ? 0 : this.actor.data.data.combat_attributes[combat].rank;
 
-       let rollExpr = dice + "+" + attrVal + "+" + comVal + "+" + cVal + "+" + totalMods;
+        let rollExpr = dice + "+" + attrVal + "+" + comVal + "+" + cVal + "+" + totalMods;
 
-       /*
-       * Stash the data in the object; this is probably extreme overkill
-       * but this class also generates the roll message (maybe refactor that later?)
-       */
+        /*
+        * Stash the data in the object; this is probably extreme overkill
+        * but this class also generates the roll message (maybe refactor that later?)
+        */
 
-       let rollInfo = {
-           expr: rollExpr,
-           chosenAttribute: attr,
-           chosenCombat: combat,
-           chosenCareer: careerName,
-           attrVal: attrVal,
-           comVal: comVal,
-           cVal: cVal,
-           diffStr: diffStr,
-           mods: totalMods,
-           bdNum: bdNum,
-           pdNum: pdNum,
-           tt:""
-       }
-       console.log(rollInfo);
-       this.rollInfo = rollInfo;
+        let rollInfo = {
+            expr: rollExpr,
+            chosenAttribute: attr,
+            chosenCombat: combat,
+            chosenCareer: careerName,
+            attrVal: attrVal,
+            comVal: comVal,
+            cVal: cVal,
+            diffStr: diffStr,
+            mods: totalMods,
+            bdNum: bdNum,
+            pdNum: pdNum,
+            tt: ""
+        }
+        console.log(rollInfo);
+        this.rollInfo = rollInfo;
 
     }
 
@@ -166,7 +166,7 @@ export class EWRoll {
 
         let rollInfo = {
             expr: expr,
-            tt:""
+            tt: ""
         }
 
         this.rollInfo = rollInfo;
@@ -176,7 +176,7 @@ export class EWRoll {
     /**
     * Compiles the damage roll from the weapon data and associated stats
     */
-    compileDamageRollInfo(){
+    compileDamageRollInfo() {
 
         console.log("Weapon item: ", this.item);
         var bonus = 0;
@@ -203,22 +203,22 @@ export class EWRoll {
 
         let totalMods = bonus - penalty + dmgMod;
 
-       console.warn("ScaledDmg / WpnDmg: ", scaledDmg, wpnDmg);
+        console.warn("ScaledDmg / WpnDmg: ", scaledDmg, wpnDmg);
 
-        if(wpnAttrib != "none") {
+        if (wpnAttrib != "none") {
             attBonus = this.actor.data.data.main_attributes[wpnAttrib].rank;
-            attBonus = wpnHalfAtt ? Math.floor(attBonus/2) : attBonus;
+            attBonus = wpnHalfAtt ? Math.floor(attBonus / 2) : attBonus;
 
-            let properAttrib = wpnAttrib[0].toUpperCase() + wpnAttrib.substring(1,3);
+            let properAttrib = wpnAttrib[0].toUpperCase() + wpnAttrib.substring(1, 3);
             friendlyDmgExtension = ` + ${wpnHalfAtt ? '1/2' : ''}${properAttrib} (${attBonus})`
         }
         if (totalMods > 0) friendlyDmgExtension += ` + ${totalMods}`
         else if (totalMods < 0) friendlyDmgExtension += ` - ${Math.abs(totalMods)}`
 
-       // Not handling weapon bonus/penalty dice right now
+        // Not handling weapon bonus/penalty dice right now
 
         // bdNum = Number(this.html.find("#bdice").val());
-       // pdNum = Number(this.html.find("#pdice").val());
+        // pdNum = Number(this.html.find("#pdice").val());
 
 
 
@@ -233,7 +233,7 @@ export class EWRoll {
             mods: totalMods,
             bdNum: bdNum,
             pdNum: pdNum,
-            tt:"",
+            tt: "",
             wpnName: wpnName,
             wpnImg: wpnImg,
             wpnDmg: wpnDmg
@@ -283,14 +283,14 @@ export class EWRoll {
         * Figure out the level of success; there are like 3 types of
         * critical success and frankly they're a bit of a pain
         */
-        if(isDamage) {
+        if (isDamage) {
             let chatData = {
                 roll: this.rollObj,
                 tooltip: new Handlebars.SafeString(tt),
                 d: this.rollInfo,
                 outcome: "",
                 outclass: "roll-sux",
-                actor:this.actor._id
+                actor: this.actor._id
             }
 
             EWMessageHelper.generateMessage(CONFIG.ewhen.MESSAGE_TYPE.DAMAGE, chatData);
@@ -298,7 +298,7 @@ export class EWRoll {
         } else {
             const diceTotal = keptDice.reduce((acc, value) => (acc + value), 0)
             // TODO: failure/success type based on dice model chosen
-            if (diceTotal >= diceModel.success && mightyThreshold <= diceModel.success){
+            if (diceTotal >= diceModel.success && mightyThreshold <= diceModel.success) {
                 outcome = "Mighty Success!";
                 outcomeClass = "roll-mighty-sux";
             } else if (diceTotal >= diceModel.success) {
@@ -310,7 +310,7 @@ export class EWRoll {
             } else if (total >= diceModel.tn) {
                 outcome = "Success!";
                 outcomeClass = "roll-sux";
-            } else if (total < diceModel.tn ) {
+            } else if (total < diceModel.tn) {
                 outcome = "Failure!";
                 outcomeClass = "roll-fail";
             }
@@ -321,7 +321,7 @@ export class EWRoll {
                 d: this.rollInfo,
                 outcome: outcome,
                 outclass: outcomeClass,
-                actor:this.actor._id
+                actor: this.actor._id
             }
 
             EWMessageHelper.generateMessage(CONFIG.ewhen.MESSAGE_TYPE.TASK, chatData);

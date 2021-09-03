@@ -16,12 +16,12 @@ export default class EWArmorSheet extends ItemSheet {
         return "systems/ewhen/templates/item/EWARmorSheet.hbs"
     }
 
-    getData () {
+    getData() {
         const data = this.data;
-   //     console.warn("item data: ", data);
+        //     console.warn("item data: ", data);
 
-        data.config = CONFIG.ewhen; 
-        
+        data.config = CONFIG.ewhen;
+
         return data;
     }
 }

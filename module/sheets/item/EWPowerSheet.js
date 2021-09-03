@@ -4,11 +4,11 @@ export default class EWPowerSheet extends ItemSheet {
         return "systems/ewhen/templates/item/EWPowerSheet.hbs"
     }
 
-    getData () {
+    getData() {
         const data = super.getData();
 
-        data.config = CONFIG.ewhen; 
-        
+        data.config = CONFIG.ewhen;
+
         return data;
     }
 }
